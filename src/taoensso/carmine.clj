@@ -10,17 +10,7 @@
              (connections :as conns)
              (commands    :as commands)]))
 
-;;;; Encore version check
-
-(let [min-encore-version 1.28] ; For `backport-run!` support
-  (if-let [assert! (ns-resolve 'taoensso.encore 'assert-min-encore-version)]
-    (assert! min-encore-version)
-    (throw
-      (ex-info
-        (format
-          "Insufficient com.taoensso/encore version (< %s). You may have a Leiningen dependency conflict (see http://goo.gl/qBbLvC for solution)."
-          min-encore-version)
-        {:min-version min-encore-version}))))
+(encore/assert-min-encore-version [2 10 0])
 
 ;;;; Connections
 
